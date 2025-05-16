@@ -1,21 +1,35 @@
-  <br>
-  <div class="container contenedor-animes">
-  <div class="row">
-    <!-- COMPLETAR CON EL LLAMADO A UNA FUNCIÓN PROPIA QUE CALCULE EL RATING PROMEDIO -->
-    <p>El rating promedio es <span class="badge text-bg-primary rounded-pill"> 7.99 </span></p>
-    <div *ngIf="selected">
-      <app-anime-detail [animeDetail]="selectedBAnime"></app-anime-detail>
-      <hr>
-    </div>
-    <div class="col-4" *ngFor="let anime of animes">
-        <p>{{anime.name}}</p>
-        <img src={{anime.img}}  alt="anime image" width=50px>
-        <p>⭐{{anime.Rating}} <b>Categories: </b>{{anime.categorie}}</p>
-        <!-- COMPLETAR PARA INCLUIR LA CANTIDAD DE TEMPORADAS -->
-        <p class="card-text"><b># seasons: </b>"COMPLETAR"</p>
-        <a href="#" (click)="onSelected(anime)">More information</a>
-        <hr>
-   </div>
+<div class="container my-4 contenedor-animes">
+  <div class="row mb-3">
+    <div class="col">
 
+      <p class="fs-5">⭐ Rating promedio global: 
+        <span class="badge bg-primary rounded-pill">
+          {{ calcularRatingPromedioGlobal() }}
+        </span>
+      </p>
+    </div>
   </div>
-</div>
+
+    <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let anime of animes">
+      <div class="card h-100 shadow-sm border-0">
+        <img [src]="anime.img" class="card-img-top" [alt]="anime.name" style="height: 300px; object-fit: cover;">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ anime.name }}</h5>
+          <p class="card-text mb-1">
+            <span class="text-warning">⭐ {{ anime.Rating }}</span>
+          </p>
+          <p class="card-text mb-1">
+            <b>Categorías:</b> {{ anime.categorie }}
+          </p>
+          <p class="card-text mb-3">
+            <b># Episodios:</b> {{ anime.total_episodes }}
+          </p>
+
+          <a class="btn btn-primary mt-auto" [routerLink]="['/anime', anime.id]">
+            Más información
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -5,9 +5,12 @@ import { AnimeDetailComponent } from './anime-detail/anime-detail.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    AnimeListComponent
   ],
   exports: [AnimeListComponent],
-  declarations: [AnimeListComponent, AnimeDetailComponent]
+  declarations: [AnimeDetailComponent]
+    bootstrap: [AppComponent]
 })
-export class AnimeModule { }
+export class AppModule { }
+// 
